@@ -14,15 +14,11 @@ app.use(
 );
 
 
-
 const routes = require('./Routes/routes');
 app.use("/api", routes);
 
-app.use(express.static(path.join(__dirname, "..", 'build')));
 
-app.get(/^\/(?!api).*/, (req, res) => {
-    res.sendFile(path.join(__dirname, "..", 'build', 'index.html'));
-});
+
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
