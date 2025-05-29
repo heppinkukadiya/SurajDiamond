@@ -154,10 +154,12 @@ exports.verifyOtp = async (req, res) => {
 };
 
 exports.administrator = async (req, res) => {
+
     try {
         const { email, password } = req.body;
 
         const role = "ADMIN";
+
 
 
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASS) {

@@ -4,12 +4,15 @@ const {signup, login, verifyOtp, administrator} = require("../Controller/Auth");
 const router = express.Router();
 const upload = require("../config/upload");
 
+
 router.get('/products', fetchProduct);
 
 
 router.post('/signup', signup);
 router.post('/login', login);
 router.post('/verify-otp', verifyOtp);
+
+
 
 
 router.post(

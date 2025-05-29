@@ -75,7 +75,6 @@ exports.addProduct = async (req, res) => {
             data: productData,
         });
 
-        // Delete temp uploaded files
         uploads.forEach(filePath => fs.unlinkSync(filePath));
 
         res.status(201).json({
