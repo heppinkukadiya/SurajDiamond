@@ -89,7 +89,7 @@ function AddProduct() {
                 {cols.map((colFields, colIndex) => (
                     <div key={colIndex} className="bg-gray-100 p-6 flex flex-col space-y-6">
                         {colFields.map(([field, config]) => {
-                            const label = field.replace(/_/g, ' ').toLowerCase();
+                            const label = field.replace(/_/g, ' ');
 
                             if (config.type === 'select') {
                                 return (
