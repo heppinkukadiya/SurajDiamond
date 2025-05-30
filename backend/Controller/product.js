@@ -46,17 +46,25 @@ exports.addProduct = async (req, res) => {
             const filePath = path.join(__dirname, "../uploads", file.filename);
             const fileBody = fs.readFileSync(filePath);
 
+            const public_url = process.env.R2_PUBLIC_URL;
+
             let folder = '';
+            let fileUrl = '';
+
             if (file.fieldname === 'Video') {
                 folder = 'videos';
-                productData.Video = file.filename;
+                fileUrl = `${public_url}/${folder}/${file.filename}`;
+                productData.Video = fileUrl;
             } else if (file.fieldname === 'Image') {
                 folder = 'images';
-                productData.Image = file.filename;
+                fileUrl = `${public_url}/${folder}/${file.filename}`;
+                productData.Image = fileUrl;
             } else if (file.fieldname === 'Certificate_Image') {
                 folder = 'certificate';
-                productData.Certificate_Image = file.filename;
+                fileUrl = `${public_url}/${folder}/${file.filename}`;
+                productData.Certificate_Image = fileUrl;
             }
+
 
             await uploadFileToR2(`${folder}/${file.filename}`, fileBody, file.mimetype);
             uploads.push(filePath);

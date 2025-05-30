@@ -7,18 +7,25 @@ const app = express();
 
 app.use(express.json());
 
-app.use(
-    cors({
-        origin: "https://surajdiamond.com"
-    })
-);
+const prod = process.env.NODE_ENV
 
+if ( !prod ) {
+    app.use(
+        cors({
+            origin: "http://localhost:3000",
+        })
+    );
+}
+else {
+    app.use(
+        cors({
+            origin: "https://surajdiamond.com"
+        })
+    );
+}
 
 const routes = require('./Routes/routes');
 app.use("/api", routes);
-
-
-
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
