@@ -4,19 +4,40 @@ const fs = require("fs");
 const path = require("path");
 const { uploadFileToR2 } = require("../config/uploadToR2");
 
+
 exports.fetchProduct = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
-        const limit = 10;
+        const limit = 12;
         const offset = (page - 1) * limit;
 
 
+        const where = {
+            isDeleted: false,
+        };
 
-        const where = {};
+        const filterKeys = [
+            "Shape",
+            "Pair",
+            "Product_Type",
+            "Carat",
+            "Fancy_Color_Dominant_Color",
+            "Color",
+            "Fancy_Color_Overtone",
+            "Clarity",
+            "Fancy_Color_Intensity",
+            "Fluor_Intensity",
+            "Lab",
+            "Certification",
+            "Culet_Carat",
+        ];
 
-        where.isDeleted = false;
-
-
+        filterKeys.forEach((key) => {
+            const val = req.query[key];
+            if (val && val !== "") {
+                where[key] = val; // exact match
+            }
+        });
 
         const products = await prisma.product.findMany({
             where,
@@ -25,12 +46,14 @@ exports.fetchProduct = async (req, res) => {
         });
 
 
-
         res.json({ page, products });
     } catch (err) {
-        res.status(500).send({ error: err.message });
+        console.error("Fetch product error:", err);
+        res.status(500).json({ error: "Failed to fetch products" });
     }
 };
+
+
 
 
 

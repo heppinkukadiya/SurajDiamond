@@ -62,7 +62,9 @@ function AddProduct() {
             const res = await axios.post(Api.ADD_PRODUCT, data, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
-            alert('Product added successfully!');
+            if(res.status === 201) {
+                alert('Product added successfully!');
+            }
             setFormData(initialFormState);
             navigate('/admin/java');
         } catch (err) {

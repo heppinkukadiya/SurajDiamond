@@ -1,6 +1,6 @@
 const Product = {
     fields: {
-        Product_Type: {type: 'string'},
+        Product_Type: {type: 'select'},
         Name: {type: 'string'},
         Stock: {type: 'int'},
         Price: {type: 'int'},
@@ -64,7 +64,8 @@ const Product = {
         Fluor_Intensity: ['Very Strong', 'Strong', 'Medium', 'Faint', 'None', 'Very Slight', 'Slight'],
         Lab: ['IGI', 'GIA', 'GCAL', 'AGS', 'HRD', 'SGL', 'GSI', 'Other', 'None'],
         Certification: ['Sustainability Rated','Climate Neutral' , 'Sustainability Rated and Climate Neutral' , 'None'],
-        Pair : ['Yes','No']
+        Pair : ['Yes','No'],
+        Product_Type: ['Diamond','Lab Grown']
     }
 };
 

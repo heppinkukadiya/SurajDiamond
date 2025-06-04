@@ -10,11 +10,8 @@ app.use(express.json());
 const prod = process.env.NODE_ENV
 
 if ( !prod ) {
-    app.use(
-        cors({
-            origin: "http://localhost:3000",
-        })
-    );
+    app.use(cors({ origin: "*" }));
+
 }
 else {
     app.use(
